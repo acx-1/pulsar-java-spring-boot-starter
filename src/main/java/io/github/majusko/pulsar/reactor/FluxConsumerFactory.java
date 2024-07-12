@@ -6,13 +6,11 @@ import io.github.majusko.pulsar.properties.PulsarProperties;
 import io.github.majusko.pulsar.utils.SchemaUtils;
 import io.github.majusko.pulsar.utils.UrlBuildService;
 import org.apache.pulsar.client.api.*;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Component
 public class FluxConsumerFactory {
     private final PulsarClient pulsarClient;
     private final UrlBuildService urlBuildService;

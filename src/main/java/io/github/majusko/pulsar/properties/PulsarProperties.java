@@ -7,6 +7,7 @@ import java.util.Set;
 
 @ConfigurationProperties(prefix = "pulsar")
 public class PulsarProperties {
+    private boolean enable = true;
     private String serviceUrl = "pulsar://localhost:6650";
     private Integer ioThreads = 10;
     private Integer listenerThreads = 10;

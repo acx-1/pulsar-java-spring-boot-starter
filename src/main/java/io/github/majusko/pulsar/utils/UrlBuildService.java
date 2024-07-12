@@ -9,14 +9,12 @@ import org.apache.pulsar.client.api.ConsumerBuilder;
 import org.apache.pulsar.client.api.DeadLetterPolicy;
 import org.apache.pulsar.client.api.SubscriptionType;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-@Service
 public class UrlBuildService {
 
     @Value("${pulsar.consumerNameDelimiter:}")

@@ -10,14 +10,12 @@ import org.apache.pulsar.client.api.*;
 import org.apache.pulsar.client.api.interceptor.ProducerInterceptor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.EmbeddedValueResolverAware;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringValueResolver;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
-@Component
 public class ProducerCollector implements BeanPostProcessor, EmbeddedValueResolverAware {
 
     private final PulsarClient pulsarClient;

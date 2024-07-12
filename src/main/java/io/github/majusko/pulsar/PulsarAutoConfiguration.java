@@ -4,23 +4,23 @@ import com.google.common.base.Strings;
 import io.github.majusko.pulsar.consumer.DefaultConsumerInterceptor;
 import io.github.majusko.pulsar.error.exception.ClientInitException;
 import io.github.majusko.pulsar.producer.DefaultProducerInterceptor;
+import io.github.majusko.pulsar.producer.ProducerCollector;
+import io.github.majusko.pulsar.producer.PulsarTemplate;
 import io.github.majusko.pulsar.properties.ConsumerProperties;
 import io.github.majusko.pulsar.properties.PulsarProperties;
 import org.apache.pulsar.client.api.*;
 import org.apache.pulsar.client.api.interceptor.ProducerInterceptor;
 import org.apache.pulsar.client.impl.auth.oauth2.AuthenticationFactoryOAuth2;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-@Configuration
-@ComponentScan
+@ConditionalOnProperty(value = "pulsar.enable", havingValue = "true", matchIfMissing = true)
 @EnableConfigurationProperties({PulsarProperties.class, ConsumerProperties.class})
 public class PulsarAutoConfiguration {
 
@@ -95,5 +95,10 @@ public class PulsarAutoConfiguration {
         }
 
         return pulsarClientBuilder.build();
+    }
+
+    @Bean
+    public PulsarTemplate<Object> pulsarTemplate(ProducerCollector producerCollector) {
+        return new PulsarTemplate<>(producerCollector);
     }
 }

@@ -45,8 +45,6 @@ import reactor.core.Disposable;
 import reactor.core.publisher.Sinks;
 import reactor.util.concurrent.Queues;
 
-@Component
-@DependsOn({"pulsarClient", "consumerCollector"})
 public class ConsumerAggregator implements EmbeddedValueResolverAware {
 
     private final Sinks.Many<FailedMessage> sink = Sinks.many().multicast().onBackpressureBuffer(Queues.SMALL_BUFFER_SIZE, false);
